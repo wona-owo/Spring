@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원관리 - 마이페이지</h1>
+	
+	<hr>
+	
+	<table border="1">
+		<tr>
+			<th>아이디</th>
+			<td>${sessionScope.loginMember.memberId}</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td>이${loginMember.memberName}</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+package kr.or.iei;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class AjaxContoller {
+
+	
+	
+	@GetMapping("/ajax/movePage.kh")
+	public String movePage() {
+		return "ajax/ajaxTest";
+	}
+	
+	//1. 기존 서블릿 방식의 Ajax 통신
+	@GetMapping("/ajax/ajaxTest1.kh")
+	public String ajaxTest1() {
+		
+	}
+}

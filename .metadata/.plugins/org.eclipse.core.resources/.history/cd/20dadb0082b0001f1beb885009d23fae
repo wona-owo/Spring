@@ -1,0 +1,10 @@
+package kr.or.iei.member.model.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MemberDao {
+	public MemberDao() {
+		System.out.println("MemberDao 생성!");
+	}
+}

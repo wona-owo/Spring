@@ -1,0 +1,25 @@
+package kr.or.iei.member.model.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kr.or.iei.member.model.vo.Member;
+
+@Repository //이 컴포넌트를 작성하면 서버 구동 시 자동으로 객체를 생성하여 IoC 컨테이너에 등록함.
+public class MemberDao {
+
+	@Autowired
+	@Qualifier("jdbcTemplate")
+	private JdbcTemplate jdbcTemplate;
+	
+	public MemberDao() {
+		System.out.println("MemberDao 생성!");
+	}
+
+	public Member memberLogin(Member member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

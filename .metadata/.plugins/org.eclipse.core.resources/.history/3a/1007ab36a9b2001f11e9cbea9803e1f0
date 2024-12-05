@@ -1,0 +1,30 @@
+package kr.or.iei.notice.model.dao;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
+import kr.or.iei.notice.model.vo.Notice;
+
+@Repository("noticeDao")
+public class NoticeDao {
+	
+	@Autowired
+	@Qualifier("sqlSessionTemplate")
+	private SqlSessionTemplate sqlSession;
+
+	
+	public List<Notice> selectNoticeList(HashMap<String, Integer> map) {
+		return sqlSession.selectList("notice.selectNotice",map);
+	}
+
+
+	public int selectNoticeCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

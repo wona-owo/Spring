@@ -1,0 +1,26 @@
+package kr.or.iei.member.model.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import kr.or.iei.member.model.dao.MemberDao;
+import kr.or.iei.member.model.vo.Member;
+
+@Service//이 컴포넌트를 작성하면 서버 구동 시 자동으로 객체를 생성하여 IoC 컨테이너에 등록함.
+public class MemberService {
+	
+		@Autowired
+		@Qualifier
+		private MemberDao memberDao; //"memberDao" 식별자를 가진 객체를 주입받기 위함
+		
+		
+		public MemberService() { 
+			System.out.println("MemberService 생성 !");
+		}
+					
+		public Member memberLogin(Member member) {
+			return memberDao.memberLogin(member);
+		}
+		
+}

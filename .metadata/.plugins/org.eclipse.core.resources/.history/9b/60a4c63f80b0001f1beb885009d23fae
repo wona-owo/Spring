@@ -1,0 +1,5 @@
+package kr.or.iei.member.model.controller;
+
+public class MemberController {
+
+}

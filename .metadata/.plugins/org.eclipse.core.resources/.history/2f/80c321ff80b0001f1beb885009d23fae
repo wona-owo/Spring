@@ -1,0 +1,8 @@
+package kr.or.iei.member.model.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class MemberController {
+
+}

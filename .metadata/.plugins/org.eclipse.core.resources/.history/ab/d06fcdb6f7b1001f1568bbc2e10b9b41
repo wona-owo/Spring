@@ -1,0 +1,31 @@
+package kr.or.iei.member.model.dao;
+
+import javax.servlet.http.HttpSession;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kr.or.iei.member.model.vo.Member;
+
+@Repository("dao")
+public class MemberDao {
+	
+	@Autowired
+	@Qualifier("sqlSessionTemplate")
+	private SqlSessionTemplate sqlSession;
+	
+	
+	public MemberDao() {
+		System.out.println("MemberDao 생성!");
+	}
+
+
+	public Member memberLogin(Member member) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectOneMember", member);
+	
+	}
+}

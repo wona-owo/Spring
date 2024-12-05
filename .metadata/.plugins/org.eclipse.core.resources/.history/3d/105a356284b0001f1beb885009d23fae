@@ -1,0 +1,20 @@
+package kr.or.iei.member.model.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import kr.or.iei.member.model.vo.Member;
+
+@Controller
+public class MemberController {
+	
+	public MemberController( ) {
+		System.out.println("MemberContoller 생성 !");
+	}
+	
+	@PostMapping("/member/login.kh")
+	public void memberLogin(Member member) {
+		System.out.println("memberId : " + member.getMemberId());
+		System.out.println("memberPw : " + member.getMemberPw());
+	}
+}
