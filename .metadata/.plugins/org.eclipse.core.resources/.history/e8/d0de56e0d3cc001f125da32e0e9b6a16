@@ -1,0 +1,142 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .notification-sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background-color: white;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      transition: left 0.3s ease;
+      padding: 20px;
+    }
+
+    .notification-sidebar.open {
+      left: 0;
+    }
+
+    .notification-header {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .notification-content {
+      margin-bottom: 20px;
+    }
+
+    .close-sidebar-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .close-sidebar-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+	
+		<nav class="side-menu">
+			<div class="nav-logo">
+				<img alt="댕냥일기"  src="/resources/css_image/logo.png"  class="logo-img">
+				<span class="nav-logo-text">댕냥일기</span>
+			</div>
+			
+			  <div class="menu-list">
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/member/mainFeed.kh" class="menu-link">홈</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/member/search.kh" class="menu-link">검색</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					 <a class="open-notification-btn" >알림</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/chat/chatRoomList.kh" class="menu-link">메시지</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/story/modalTest.kh" class="menu-link">정기구독</a>
+				</div>
+			</div>		
+			
+			<div class="profile">
+				<div class="profile-frame">
+					<img class="profileImage"
+                            src="${not empty loginMember.userImage ? loginMember.userImage : '/resources/profile_file/default_profile.png'}"
+                            alt="프로필 이미지" />
+				</div>
+					<a class="myNick" href="/post/myFeedFrm.kh"> ${loginMember.userNickname}</a>
+			</div>
+			<hr>
+			<hr>
+			<a href="/member/logout.kh" style="color: gray;">
+			<i class="fa-solid fa-right-from-bracket" style="color: gray;"></i> 로그아웃</a>					
+		</nav>
+		
+	</div>
+	
+	
+	  <div class="notification-sidebar" id="notificationSidebar">
+	    <div class="notification-header">알림</div>
+	    <div class="notification-content">이 사이드바는 SNS 알림창입니다!</div>
+	    <button class="close-sidebar-btn">닫기</button>
+	  </div>
+	
+	  <script>
+	    const notificationSidebar = document.getElementById('notificationSidebar');
+	    const openNotificationBtn = document.querySelector('.open-notification-btn');
+	    const closeSidebarBtn = document.querySelector('.close-sidebar-btn');
+	
+	    openNotificationBtn.addEventListener('click', () => {
+	      notificationSidebar.classList.add('open');
+	    });
+	
+	    closeSidebarBtn.addEventListener('click', () => {
+	      notificationSidebar.classList.remove('open');
+	    });
+	
+	    document.addEventListener('click', (event) => {
+	      if (!notificationSidebar.contains(event.target) && event.target !== openNotificationBtn) {
+	        notificationSidebar.classList.remove('open');
+	      }
+	    });
+	  </script>
+	
+	
+	
+	
+</body>
+</html>

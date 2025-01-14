@@ -1,0 +1,5 @@
+package kr.or.iei.notify.model.vo;
+
+public class Notify {
+
+}

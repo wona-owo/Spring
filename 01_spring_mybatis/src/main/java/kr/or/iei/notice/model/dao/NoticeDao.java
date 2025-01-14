@@ -52,4 +52,19 @@ public class NoticeDao {
 	public List<NoticeFile> selectNoticeFileList(String noticeNo) {
 		return sqlSession.selectList("notice.selectNoticeFileList", noticeNo);
 	}
+
+
+	public int deleteNotice(String noticeNo) {
+		return sqlSession.delete("notice.deleteNotice",noticeNo);
+	}
+
+
+	public int updateNotice(Notice notice) {
+		return sqlSession.update("notice.updateNotice",notice);		
+	}
+
+
+	public int deleteNoticeFile(String noticeNo) {
+		return sqlSession.delete("notice.deleteNoticeFile",noticeNo);
+	}
 }

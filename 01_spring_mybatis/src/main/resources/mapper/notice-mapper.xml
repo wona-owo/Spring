@@ -95,4 +95,24 @@ select seq_notice.nextval from dual
 	   from tbl_notice_file
 	  where notice_no = #{noticeNo}
 	</select>
+	
+	<delete id="deleteNotice"
+	parameterType="string">
+	delete from tbl_notice where notice_no = #{_parameter}
+	</delete>
+	
+	<update id="updateNotice"
+	parameterType="notice">
+	update tbl_notice
+	set notice_title =#{noticeTitle},
+	    notice_content=#{noticeContent}
+	 where notice_no=#{noticeNo}
+	</update>
+	
+	<delete Id="deleteNoticeFile",
+	     parameterType="string">
+	delete from tbl_notice_file where notice_no #{_parameter}
+	     </delete>
+	
+	
 </mapper>

@@ -105,6 +105,21 @@
 	  	<h3><a href="/member/allMemberList.kh">전체회원조회</a></h3>
 	  </c:if>
 	 
+	  <hr>
+	  <%--
+	  API : Application Programming Interface
+	  		소프트웨어 응용 프로그램에서, 다른 소프트웨어 구성 요소 또는 서비스와 상호작용하기 위해,
+	  		인터페이스를 제공하는 기술.
+	  		
+	  공공 API : 공공기관(정부, 자치단체)에서 제공하는 API
+	  
+	  JSON이나 XML(HTML이랑 구조 유사. 여는태그 닫는태그, HTML은 제공되는 표준태그를 사용. XML은 사용자 정의태그 작성 가능, 목적이 다르다.)형태가 사용하기 간편
+	  url 형식으로 요청을 보내면, 데이터를 리턴해준다.
+	  
+	   --%>
+	  
+	  <h3><a href="/api/publicData?reqPage=busanFood">부산 맛집 정보 서비스</a></h3>
+	  <h3><a href="/api/publicData?reqPage=financial">환율정보(JSON)</a></h3>
 	 
 </body>
 </html>

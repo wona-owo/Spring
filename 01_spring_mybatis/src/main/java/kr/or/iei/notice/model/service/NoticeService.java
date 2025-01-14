@@ -138,4 +138,60 @@ public class NoticeService {
 		}
 		return notice;
 	}
+	
+	public ArrayList<NoticeFile> deleteNotice(String noticeNo) {	
+		
+		/*
+		1) 현재 게시글에 대한 파일 정보를 조회
+		2) 게시글 정보 DB에서 삭제 (tbl_notice)
+		3) 게시글에 대한 파일 정보 DB에서 삭제(tbl_notice_file)
+			--(2)번 수행 시, on delete cascade 설정에 의해 자동 삭제 처리
+		4) 서버에 업로드된 파일 정보 삭제
+		*/
+		
+		//1) 현재 게시글에 대한 파일 정보를 조회(서버에 업로드된 파일 정보를 조회)
+		ArrayList<NoticeFile> list = (ArrayList<NoticeFile>) dao.selectNoticeFileList(noticeNo);
+		
+		//2) 게시글 정보 DB 삭제
+		int result = dao.deleteNotice(noticeNo);
+		
+		if(result>0) {
+			return list;
+		}else {
+			return null;
+		}
+	}
+
+	@Transactional
+	public ArrayList<NoticeFile> updateNotice(Notice notice, ArrayList<NoticeFile> fileList) {
+		/*
+		1) 게시글 정보 수정(tbl_notice)
+		2) 서버에서 기존 파일 정보를 삭제하기 위한 조회
+		3) 기존 파일 정보 삭제
+		4) 업로드한 파일 정보 등록(tbl_notice_file)
+		
+		*/
+		
+		//1) 게시글 정보 수정
+		int result = dao.updateNotice(notice);
+		
+		ArrayList<NoticeFile> delFileList = null;
+		if(result > 0){
+			//2) 서버에서 기존파일 정보를 삭제를 위한 파일 리스트 조회
+			delFileList = (ArrayList<NoticeFile>) dao.selectNoticeFileList(notice.getNoticeNo());
+	
+			//3) 기존 파일 정보 DB에서 삭제 처리
+			result = dao.deleteNoticeFile(notice.getNoticeNo());
+			
+			if(result > 0 && fileList.size() > 0) {
+				//4) 업로드한 파일 정보 DB에 등록 처리
+				for(NoticeFile insFile : fileList) {
+					dao.insertNoticeFile(insFile);
+				}
+			}
+		}
+		
+		return delFileList;
+	}
+
 }

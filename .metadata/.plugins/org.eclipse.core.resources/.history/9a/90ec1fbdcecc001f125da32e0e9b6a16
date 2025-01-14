@@ -1,0 +1,8 @@
+package kr.or.iei.notify.model.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository("notifyDao")
+public class NotifyDao {
+
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notify">
+
+    <!-- 새 알림 추가 -->
+    <insert id="insert" parameterType="notify">
+        INSERT INTO notify 
+        (notify_id, send_user_no, accept_user_no,event_type, notify_content, is_read, notify_date)
+        VALUES 
+        (seq_notify.nextval, #{sendUserNo}, #{acceptUserNo}, #{eventType}, #{notifyContent}, #{isRead}, sysdate)
+    </insert>
+
+      <!-- 알림 발생자 닉네임 가져오기 -->
+    <select id="srchUserName" parameterType="_int" resultType="string">
+    	 SELECT user_nickname
+		 FROM tbl_user
+		 WHERE user_no = #{_parameter}
+    </select>
+    
+
+</mapper>

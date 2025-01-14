@@ -1,0 +1,164 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .notification-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .notification-modal {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 300px;
+    }
+
+    .notification-header {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .notification-content {
+      margin-bottom: 20px;
+    }
+
+    .notification-footer {
+      display: flex;
+      justify-content: center;
+    }
+
+    .close-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .open-notification-btn {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .open-notification-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+	
+		<nav class="side-menu">
+			<div class="nav-logo">
+				<img alt="댕냥일기"  src="/resources/css_image/logo.png"  class="logo-img">
+				<span class="nav-logo-text">댕냥일기</span>
+			</div>
+			
+			  <div class="menu-list">
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/member/mainFeed.kh" class="menu-link">홈</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/member/search.kh" class="menu-link">검색</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					 <a class="open-notification-btn" >알림</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/chat/chatRoomList.kh" class="menu-link">메시지</a>
+				</div>
+				
+				<div class="one-menu">
+					<img alt="메뉴아이콘" src="/resources/css_image/icon.png" class="icon-img">
+					<a href="/story/modalTest.kh" class="menu-link">정기구독</a>
+				</div>
+			</div>		
+			
+			<div class="profile">
+				<div class="profile-frame">
+					<img class="profileImage"
+                            src="${not empty loginMember.userImage ? loginMember.userImage : '/resources/profile_file/default_profile.png'}"
+                            alt="프로필 이미지" />
+				</div>
+					<a class="myNick" href="/post/myFeedFrm.kh"> ${loginMember.userNickname}</a>
+			</div>
+			<hr>
+			<hr>
+			<a href="/member/logout.kh" style="color: gray;">
+			<i class="fa-solid fa-right-from-bracket" style="color: gray;"></i> 로그아웃</a>					
+		</nav>
+		
+	</div>
+
+
+  <div class="notification-overlay" id="notificationOverlay">
+    <div class="notification-modal">
+      <div class="notification-header">알림</div>
+      <div class="notification-content">이 모달은 SNS 알림창입니다!</div>
+      <div class="notification-footer">
+        <button class="close-btn">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const notificationOverlay = document.getElementById('notificationOverlay');
+    const openNotificationBtn = document.querySelector('.open-notification-btn');
+    const closeNotificationBtn = document.querySelector('.close-btn');
+
+    openNotificationBtn.addEventListener('click', () => {
+      notificationOverlay.style.display = 'flex';
+    });
+
+    closeNotificationBtn.addEventListener('click', () => {
+      notificationOverlay.style.display = 'none';
+    });
+
+    notificationOverlay.addEventListener('click', (event) => {
+      if (event.target === notificationOverlay) {
+        notificationOverlay.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
